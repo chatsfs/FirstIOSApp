@@ -10,20 +10,27 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var funFactLabel: UILabel!
-    let facts = ["Ants stretch when they wake up in the morning", "Ostriches can run faster than horses"]
+    @IBOutlet weak var funFactButton: UIButton!
+    
+    let factProvider = FactProvider()
+    let colorProvider = BackgroundColorProvider()
     override func viewDidLoad() {
         super.viewDidLoad()
-        funFactLabel.text = facts[0]
-            }
+        funFactLabel.text = factProvider.facts[0]
+        let color = colorProvider.colors[0]
+        funFactButton.tintColor = color
+        view.backgroundColor = color
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func showFact() {
-
-        
-        funFactLabel.text=facts[]
+    @IBAction func showFact() {        
+        funFactLabel.text=factProvider.randomFact()
+        let randomColor = colorProvider.randomColor()
+        view.backgroundColor = randomColor
+        funFactButton.tintColor = randomColor
     }
 
 }
